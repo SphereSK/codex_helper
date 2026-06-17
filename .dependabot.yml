@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    open-pull-requests-limit: 10
+    reviewers:
+      - 'your-github-handle'
+    labels:
+      - 'dependencies'
+      - 'type-test'
+    allow:
+      - dependency-type: 'all'
+    ignore:
+      # Ignore major version updates (manual only)
+      - dependency-name: 'next'
+        update-types: ['version-update:semver-major']
+    versioning-strategy: 'increase'
+
+  # Keep GitHub Actions updated
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '10:00'
+    reviewers:
+      - 'your-github-handle'
+    labels:
+      - 'ci/cd'
